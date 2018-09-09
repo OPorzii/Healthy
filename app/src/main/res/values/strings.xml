@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Healthy</string>
+
+    <string name="user_id">User ID</string>
+    <string name="height">Height (cm)</string>
+    <string name="weight">Weight (cm)</string>
+    <string name="bmi">bmi</string>
+</resources>
