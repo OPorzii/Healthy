@@ -11,8 +11,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.a59070103.healthy.weight.WeightFragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -57,6 +59,7 @@ public class MenuFragment extends Fragment{
                 }
             }
         });
+        signoutBtn();
 
 
 
@@ -66,5 +69,21 @@ public class MenuFragment extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_menu, container, false);
+    }
+
+    void signoutBtn(){
+        TextView _sightoutbtn = (TextView) getView().findViewById(R.id.sighout_btn);
+        _sightoutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                mAuth.signOut();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.main_view, new LoginFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 }

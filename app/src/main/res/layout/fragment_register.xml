@@ -10,36 +10,23 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/editText"
-            android:layout_width="321dp"
-            android:layout_height="57dp"
-            android:layout_marginTop="4dp"
-            android:drawableLeft="@drawable/ico_name"
-            android:ems="10"
-            android:hint="Name"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText2" />
-
-        <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/inp_repass"
             android:layout_width="321dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
-            android:drawableLeft="@drawable/ico_age"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/ico_password"
             android:ems="10"
-            android:hint="Age"
-            android:inputType="textPersonName"
+            android:hint="Re-Password"
+            android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.51"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText" />
+            app:layout_constraintTop_toBottomOf="@+id/inp_pass" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/inp_pass"
             android:layout_width="321dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -48,19 +35,19 @@
             android:drawableLeft="@drawable/ico_password"
             android:ems="10"
             android:hint="Password"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText3" />
+            app:layout_constraintTop_toBottomOf="@+id/inp_email" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/inp_email"
             android:layout_width="322dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
             android:drawableLeft="@drawable/ico_person"
             android:ems="10"
-            android:hint="User ID"
+            android:hint="E-mail"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -68,7 +55,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/regis_btn"
             android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -76,6 +63,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText4" />
+            app:layout_constraintTop_toBottomOf="@+id/inp_repass" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
