@@ -5,11 +5,27 @@ import java.util.Date;
 public class WeightInfo {
 
     private float weight;
-    private String addDate;
+    private String date;
     private String status;
+
+
+    public WeightInfo() {}
+
+
+    public float getWeight() {
+        return weight;
+    }
 
     public void setWeight(float weight) {
         this.weight = weight;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getStatus() {
@@ -20,29 +36,13 @@ public class WeightInfo {
         this.status = status;
     }
 
-    public float getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
+    public WeightInfo(float weight, String date, String status) {
         this.weight = weight;
-    }
-
-    public String getAddDate() {
-        return addDate;
-    }
-
-    public void setAddDate(String addDate) {
-        this.addDate = addDate;
-    }
-
-    public WeightInfo(float weight, String addDate, String status) {
-        this.weight = weight;
-        this.addDate = addDate;
+        this.date = date;
         this.status = status;
     }
 
-    public WeightInfo() {}
+
 
 
 

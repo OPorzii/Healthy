@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +15,25 @@ import android.widget.ListView;
 import com.example.a59070103.healthy.R;
 import com.example.a59070103.healthy.weight.WeightForm;
 import com.example.a59070103.healthy.weight.WeightInfo;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
 public class WeightFragment extends Fragment {
 
-
+    FirebaseFirestore mdb = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
     ArrayList<WeightInfo> weightList = new ArrayList<>();
+    ListView weightShowList;
 
 
     @Nullable
@@ -29,23 +42,40 @@ public class WeightFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
 
-        // add weight item
-        weightList.add(new WeightInfo(63, "01 Jan 2018", "DOWN"));
-        weightList.add(new WeightInfo(52, "02 Jan 2018", "UP"));
-        weightList.add(new WeightInfo(22, "03 Jan 2018", "UP"));
+
+        weightShowList = getView().findViewById(R.id.weight_list);
+
+        getDataFromFireStore();
+        initAddweightBtn();
 
 
-        // get ListView
-        ListView weightShowList = getView().findViewById(R.id.weight_list);
+    }
 
-        // new adapter
-        WeightAdapter weightAdapter = new WeightAdapter(getActivity(),
+    void getDataFromFireStore(){
+
+
+        final WeightAdapter weightAdapter = new WeightAdapter(getActivity(),
                 R.layout.weight_form_items, weightList);
-
-        // set adapter to ListView
         weightShowList.setAdapter(weightAdapter);
 
-        initAddweightBtn();
+
+
+        mdb.collection("myfitness").document(mAuth.getUid())
+                .collection("weight").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@javax.annotation.Nullable QuerySnapshot queryDocumentSnapshots, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                    WeightInfo obj = doc.toObject(WeightInfo.class);
+                    weightList.add(obj);
+                }
+
+                weightAdapter.notifyDataSetChanged();
+
+
+
+            }
+        });
+
 
 
     }
