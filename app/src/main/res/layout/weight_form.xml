@@ -32,28 +32,15 @@
             app:layout_constraintTop_toBottomOf="@+id/add_weight" />
 
         <EditText
-            android:id="@+id/add_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
-            android:fontFamily="sans-serif-condensed"
-            android:hint="วันที่ช่าง"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/back_btn" />
-
-        <EditText
             android:id="@+id/add_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="72dp"
             android:fontFamily="sans-serif-condensed"
             android:hint="น้ำหนัก (kg)"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_date" />
+            app:layout_constraintTop_toBottomOf="@+id/back_btn" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -8,18 +8,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.a59070103.healthy.R;
-import com.example.a59070103.healthy.weight.WeightForm;
-import com.example.a59070103.healthy.weight.WeightInfo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -41,11 +36,9 @@ public class WeightFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
-
         weightShowList = getView().findViewById(R.id.weight_list);
-
         getDataFromFireStore();
+        weightList.clear();
         initAddweightBtn();
 
 
@@ -96,7 +89,22 @@ public class WeightFragment extends Fragment {
 
     }
     public void addWeight(WeightInfo weight){
-        weightList.add(weight);
+
+        mdb.collection("myfitness").document(mAuth.getUid()).collection("weight")
+                .document(weight.getDate()).set(weight).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("AddWeightResult", "Success!");
+            }
+
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("AddWeightResult", e.getMessage());
+
+            }
+        });
+
     }
 
     @Nullable

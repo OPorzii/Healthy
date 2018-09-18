@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.a59070103.healthy.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class WeightForm extends Fragment{
 
@@ -47,27 +53,42 @@ public class WeightForm extends Fragment{
         _addweighBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WeightFragment weightFragment = new WeightFragment();
 
-                EditText _addDate = (EditText) getView().findViewById(R.id.add_date);
                 EditText _addWeight = (EditText) getView().findViewById(R.id.add_weight);
 
-                if(_addDate.getText().toString().isEmpty() || _addWeight.getText().toString().isEmpty()){
+                if(_addWeight.getText().toString().isEmpty()){
                     Toast.makeText(getActivity(), "Fill date or weight", Toast.LENGTH_SHORT).show();
                 } else {
-                    String _Date = _addDate.getText().toString();
+                    String dateNow = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
                     Float _Weight = Float.parseFloat(_addWeight.getText().toString());
-                    weightFragment.addWeight(new WeightInfo(_Weight, _Date, "test"));
+                    addWeight(new WeightInfo(_Weight, dateNow, ""));
                     Toast.makeText(getActivity(), "Your weight ADDED!", Toast.LENGTH_SHORT).show();
-                    getActivity().getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.main_view, weightFragment)
-                            .addToBackStack(null).commit();
                 }
 
             }
         });
 
+
+    }
+
+    void addWeight(WeightInfo weight){
+        FirebaseFirestore mdb = FirebaseFirestore.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        mdb.collection("myfitness").document(mAuth.getUid()).collection("weight")
+                .document(weight.getDate()).set(weight).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("AddWeightResult", "Success!");
+            }
+
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("AddWeightResult", e.getMessage());
+
+            }
+        });
 
     }
 
