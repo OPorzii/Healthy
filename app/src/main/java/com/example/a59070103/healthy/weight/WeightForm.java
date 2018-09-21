@@ -62,7 +62,11 @@ public class WeightForm extends Fragment{
                     String dateNow = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
                     Float _Weight = Float.parseFloat(_addWeight.getText().toString());
                     addWeight(new WeightInfo(_Weight, dateNow, ""));
-                    Toast.makeText(getActivity(), "Your weight ADDED!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "เพิ่มข้อมูลเรียบร้อย!", Toast.LENGTH_SHORT).show();
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.main_view, new WeightFragment())
+                            .addToBackStack(null).commit();
                 }
 
             }
@@ -85,6 +89,7 @@ public class WeightForm extends Fragment{
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.d("AddWeightResult", e.getMessage());
 
             }

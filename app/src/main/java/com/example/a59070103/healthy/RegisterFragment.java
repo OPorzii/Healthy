@@ -44,7 +44,7 @@ public class RegisterFragment extends Fragment {
                 String _emailStr = _email.getText().toString();
                 String _passwordStr = _password.getText().toString();
                 String _repasswordStr = _repassword.getText().toString();
-                if (_emailStr.isEmpty() || _passwordStr.isEmpty()) {
+                if (_emailStr.isEmpty() || _passwordStr.isEmpty() || _repasswordStr.isEmpty()) {
                     Toast.makeText(
                             getActivity(), "กรุณากรอกข้อมูลให้ครบ", Toast.LENGTH_SHORT).show();
                 } else {
@@ -73,6 +73,9 @@ public class RegisterFragment extends Fragment {
             public void onSuccess(AuthResult authResult) {
                 Log.d("RegisterResult","Success");
                 sendVerifiedEmail(mAuth.getCurrentUser());
+                mAuth.signOut();
+                Toast.makeText(
+                        getActivity(), "ลงทะเบียนเรียบร้อย โปรดยืนยัน Email", Toast.LENGTH_SHORT).show();
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.main_view, new LoginFragment())
@@ -83,6 +86,8 @@ public class RegisterFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Exception e) {
+                Toast.makeText(
+                        getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.d("RegisterResult",e.getMessage());
 
             }
@@ -99,6 +104,8 @@ public class RegisterFragment extends Fragment {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                Toast.makeText(
+                        getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.d("EmailSendResult",e.getMessage());
             }
         });

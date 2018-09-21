@@ -29,10 +29,23 @@ public class MenuFragment extends Fragment{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() == null) {
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main_view, new LoginFragment())
+                    .addToBackStack(null)
+                    .commit();
+        }
+
         _menu.clear();
         _menu.add("BMI");
         _menu.add("Weight");
-        _menu.add("Setup");
+
+
+        TextView textEmail = (TextView)getView().findViewById(R.id.email_display);
+        textEmail.setText(mAuth.getCurrentUser().getEmail());
 
 
         ListView menuList = getView().findViewById(R.id.menu_list);
