@@ -5,4 +5,7 @@
     <string name="height">Height (cm)</string>
     <string name="weight">Weight (cm)</string>
     <string name="bmi">bmi</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/back_btn"
+            android:layout_width="335dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="ย้อนกลับ"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/sleep_save_btn"
+            android:layout_width="331dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="บันทึก"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/time_wake" />
+
+        <TextView
+            android:id="@+id/date_sleep"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:background="#e3ffda"
+            android:inputType="time"
+            android:ems="10"
+            android:hint="วันที่"
+            android:textSize="30sp"
+            android:textColor="#000000"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back_btn" />
+
+        <TextView
+            android:id="@+id/time_sleep"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="40dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="เวลานอน"
+            android:textColor="#000000"
+            android:background="#e3ffda"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date_sleep" />
+
+        <TextView
+            android:id="@+id/time_wake"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="36dp"
+            android:background="#e3ffda"
+            android:fontFamily="sans-serif-smallcaps"
+            android:hint="เวลาตื่น"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/time_sleep" />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
