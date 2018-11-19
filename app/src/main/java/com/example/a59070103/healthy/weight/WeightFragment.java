@@ -75,7 +75,7 @@ public class WeightFragment extends Fragment {
 
 
     void initAddweightBtn(){
-        Button _addweighBtn = (Button) getView().findViewById(R.id.add_weight_btn);
+        Button _addweighBtn = (Button) getView().findViewById(R.id.back_btn);
         _addweighBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
